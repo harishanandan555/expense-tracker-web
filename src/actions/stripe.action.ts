@@ -8,11 +8,12 @@ import { createCustomer } from "@/services/stripe.services";
 let APP_URL = "http://localhost:3000"
 
 export async function Checkout() {
+
   const customer: any = await createCustomer();
 
   const checkout = await stripe.checkout.sessions.create({
-    success_url: `${APP_URL}/dashboard?success=true`,
-    cancel_url: `${APP_URL}/dashboard?success=false`,
+    success_url: `${process.env.APP_URL}/dashboard?success=true`,
+    cancel_url: `${process.env.APP_URL}/dashboard?success=false`,
     customer: customer.stripeCustomerId,
     line_items: [
       {
@@ -34,7 +35,7 @@ export async function GenerateCustomerPortal() {
 
   const portal = await stripe.billingPortal.sessions.create({
     customer: customer.stripeCustomerId,
-    return_url: `${APP_URL}/settings`,
+    return_url: `${process.env.APP_URL}/settings`,
   });
 
   return redirect(portal.url as string);

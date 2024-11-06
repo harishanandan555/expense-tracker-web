@@ -1,11 +1,16 @@
 import Stripe from "stripe";
 
-let STRIPE_SECRET = "sk_test_tR3PYbcVNZZ796tH88S4VQ2u"
-let STRIPE_PRICEID = "price_1Q4sH5JAJfZb9HEB411lBr9L"
+// let STRIPE_SECRET = "sk_test_tR3PYbcVNZZ796tH88S4VQ2u"
+// let STRIPE_PRICEID = "price_1Q4sH5JAJfZb9HEB411lBr9L"
 
-export const stripe = new Stripe(STRIPE_SECRET!);
+// export const stripe = new Stripe(STRIPE_SECRET!);
 
-export const priceId = STRIPE_PRICEID;
+// export const priceId = STRIPE_PRICEID;
+
+export const stripe = new Stripe(process.env.STRIPE_SECRET!);
+
+export const priceId = process.env.STRIPE_PRICEID;
+
 
 export const plan = {
   features: [
